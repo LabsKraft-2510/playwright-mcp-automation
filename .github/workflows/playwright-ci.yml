@@ -1,0 +1,54 @@
+name: Playwright CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # The workflow will pick this up from repository secrets
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests
+        run: npm test
+
+      - name: Install api-sample dependencies
+        working-directory: api-sample
+        run: npm ci
+
+      - name: Run api-sample tests
+        working-directory: api-sample
+        run: npm test
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+
+      - name: Upload api-sample report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-sample-report
+          path: api-sample/playwright-report
