@@ -89,4 +89,4 @@ Project layout
 - `scripts/` — helper scripts
 
 Notes
-- Do not commit secrets (API keys) to version control. Use `.env` and `.env.example`.
+- Do not commit secrets (API keys) to version control
