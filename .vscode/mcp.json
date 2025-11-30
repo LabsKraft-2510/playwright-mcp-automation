@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright"]
+    },
+    "excel": {
+      "command": "npx",
+      "args": ["--yes", "@negokaz/excel-mcp-server"],
+      "env": {
+        "EXCEL_MCP_PAGING_CELLS_LIMIT": "4000"
+      }
+    },
+    "rest-api": {
+      "command": "npx",
+      "args": ["-y", "dkmaker-mcp-rest-api"]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", 
+               "/home/zadmin/playwright-mcp-automation"]
+    }
+  }
+}
