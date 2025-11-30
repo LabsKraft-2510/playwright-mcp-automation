@@ -81,21 +81,6 @@ Helper scripts
 - `scripts/mcp-helper.sh` — interactive helper menu
 - `scripts/setup-claude-desktop.sh` — copy config to Claude Desktop (if using desktop app)
 
-Troubleshooting
-- Playwright browser deps (Linux/CI):
-
-```bash
-sudo npx playwright install-deps
-```
-
-- If a test fails to launch a browser, run `npx playwright install` and the `install-deps` command above.
-- If TypeScript scripts error with `ts-node` missing, install dev deps:
-
-```bash
-npm install --save-dev ts-node typescript @types/node
-```
-
-- Single-file runs and parallelism: using `-j 1` limits job shards; Playwright will still use workers defined in config.
 
 Project layout
 - `src/` — page objects, agents, core framework
@@ -105,4 +90,3 @@ Project layout
 
 Notes
 - Do not commit secrets (API keys) to version control. Use `.env` and `.env.example`.
-- If tests that expect a local app are skipped, set `BASE_URL` environment variable to run against a real app: `BASE_URL=http://your-app:3000 npm test`.
