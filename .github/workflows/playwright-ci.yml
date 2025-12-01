@@ -46,9 +46,3 @@ jobs:
           name: playwright-report
           path: playwright-report
 
-      - name: Upload api-sample report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: api-sample-report
-          path: api-sample/playwright-report
